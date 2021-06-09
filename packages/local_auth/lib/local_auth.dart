@@ -34,7 +34,7 @@ class LocalAuthentication {
   /// Use `authenticate` with `biometricOnly: true` instead
   @Deprecated("Use `authenticate` with `biometricOnly: true` instead")
   Future<bool> authenticateWithBiometrics({
-    required String localizedReason,
+    String localizedReason = '',
     bool useErrorDialogs = true,
     bool stickyAuth = false,
     AndroidAuthMessages androidAuthStrings = const AndroidAuthMessages(),
@@ -59,7 +59,7 @@ class LocalAuthentication {
   ///
   /// [localizedReason] is the message to show to user while prompting them
   /// for authentication. This is typically along the lines of: 'Please scan
-  /// your finger to access MyApp.'. This must not be empty.
+  /// your finger to access MyApp.'.
   ///
   /// [useErrorDialogs] = true means the system will attempt to handle user
   /// fixable issues encountered while authenticating. For instance, if
@@ -92,7 +92,7 @@ class LocalAuthentication {
   /// [PlatformException] with error code [otherOperatingSystem] on the iOS
   /// simulator.
   Future<bool> authenticate({
-    required String localizedReason,
+    String localizedReason = '',
     bool useErrorDialogs = true,
     bool stickyAuth = false,
     AndroidAuthMessages androidAuthStrings = const AndroidAuthMessages(),
@@ -100,8 +100,6 @@ class LocalAuthentication {
     bool sensitiveTransaction = true,
     bool biometricOnly = false,
   }) async {
-    assert(localizedReason.isNotEmpty);
-
     final Map<String, Object> args = <String, Object>{
       'localizedReason': localizedReason,
       'useErrorDialogs': useErrorDialogs,
