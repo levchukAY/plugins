@@ -89,8 +89,8 @@ class AuthenticationHelper extends BiometricPrompt.AuthenticationCallback
             .setConfirmationRequired((Boolean) call.argument("sensitiveTransaction"))
             .setConfirmationRequired((Boolean) call.argument("sensitiveTransaction"));
 
-    val localizedReason = (String) call.argument("localizedReason"));
-    if (localizedReason.isNotempty()) {
+    String localizedReason = call.argument("localizedReason");
+    if (localizedReason != null && !localizedReason.isEmpty()) {
       promptBuilder.setDescription(localizedReason);
     }
 
